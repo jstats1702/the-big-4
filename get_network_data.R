@@ -530,137 +530,160 @@ save(res_slayer,    cov_slayer,    file = "data_slayer.RData")
 save(res_megadeth,  cov_megadeth,  file = "data_megadeth.RData")
 save(res_anthrax,   cov_anthrax,   file = "data_anthrax.RData")
 
-# Plots ------------------------------------------------------------------------
+# Plots: Metallica -------------------------------------------------------------
 
-jpeg("networks_metallica.jpg",
-     width = 2000, height = 2000, res = 200, pointsize = 18)
-
-op <- par(mfrow = c(2, 2), mar = 0.5*c(2, 2, 4, 2))  # 2x2 layout
-
+pdf(file = paste0("network_metallica_loudness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_metallica$logRMS$graph,
-     main_title = "Loudness (log RMS)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+
+pdf(file = paste0("network_metallica_brightness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_metallica$logSC$graph,
-     main_title = "Brightness (log SC)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_metallica_tonality.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_metallica$logitSFM$graph,
-     main_title = "Tonality (logit SFM)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_metallica_rhythm.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_metallica$logFlux$graph,
-     main_title = "Rhythm (log Flux)",
+     main_title = "",
      show_legend = F
 )
-
-par(op)
 dev.off()
 
-# ---
+# Plots: Slayer ----------------------------------------------------------------
 
-jpeg("networks_slayer.jpg",
-     width = 2000, height = 2000, res = 200, pointsize = 18)
-
-op <- par(mfrow = c(2, 2), mar = 0.5*c(2, 2, 4, 2))  # 2x2 layout
-
+pdf(file = paste0("network_slayer_loudness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_slayer$logRMS$graph,
-     main_title = "Loudness (log RMS)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+
+pdf(file = paste0("network_slayer_brightness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_slayer$logSC$graph,
-     main_title = "Brightness (log SC)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_slayer_tonality.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_slayer$logitSFM$graph,
-     main_title = "Tonality (logit SFM)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_slayer_rhythm.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_slayer$logFlux$graph,
-     main_title = "Rhythm (log Flux)",
+     main_title = "",
      show_legend = F
 )
-
-par(op)
 dev.off()
 
-# ---
+# Plots: Megadeth --------------------------------------------------------------
 
-jpeg("networks_megadeth.jpg",
-     width = 2000, height = 2000, res = 200, pointsize = 18)
-
-op <- par(mfrow = c(2, 2), mar = 0.5*c(2, 2, 4, 2))  # 2x2 layout
-
+pdf(file = paste0("network_megadeth_loudness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_megadeth$logRMS$graph,
-     main_title = "Loudness (log RMS)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+
+pdf(file = paste0("network_megadeth_brightness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_megadeth$logSC$graph,
-     main_title = "Brightness (log SC)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_megadeth_tonality.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_megadeth$logitSFM$graph,
-     main_title = "Tonality (logit SFM)",
+     main_title = "",
      show_legend = F
 )
+dev.off()
 
+pdf(file = paste0("network_megadeth_rhythm.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_megadeth$logFlux$graph,
-     main_title = "Rhythm (log Flux)",
+     main_title = "",
      show_legend = F
 )
-par(op)
 dev.off()
 
-# ---
+# Plots: Anthrax --------------------------------------------------------------
 
-jpeg("networks_anthrax.jpg",
-     width = 2000, height = 2000, res = 200, pointsize = 18)
-
-op <- par(mfrow = c(2, 2), mar = 0.5*c(2, 2, 4, 2))  # 2x2 layout
-
+pdf(file = paste0("network_anthrax_loudness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
 plot_album_network(
      g = res_anthrax$logRMS$graph,
-     main_title = "Loudness (log RMS)",
+     main_title = "",
      show_legend = F
 )
-
-plot_album_network(
-     g = res_anthrax$logSC$graph,
-     main_title = "Brightness (log SC)",
-     show_legend = F
-)
-
-plot_album_network(
-     g = res_anthrax$logitSFM$graph,
-     main_title = "Tonality (logit SFM)",
-     show_legend = F
-)
-
-plot_album_network(
-     g = res_anthrax$logFlux$graph,
-     main_title = "Rhythm (log Flux)",
-     show_legend = F
-)
-par(op)
 dev.off()
 
+
+pdf(file = paste0("network_anthrax_brightness.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
+plot_album_network(
+     g = res_anthrax$logSC$graph,
+     main_title = "",
+     show_legend = F
+)
+dev.off()
+
+pdf(file = paste0("network_anthrax_tonality.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
+plot_album_network(
+     g = res_anthrax$logitSFM$graph,
+     main_title = "",
+     show_legend = F
+)
+dev.off()
+
+pdf(file = paste0("network_anthrax_rhythm.pdf"), width = 5, height = 5, pointsize = 20)
+par(mar = 0*c(2, 2, 2, 2))
+plot_album_network(
+     g = res_anthrax$logFlux$graph,
+     main_title = "",
+     show_legend = F
+)
+dev.off()
+
+# End --------------------------------------------------------------------------
