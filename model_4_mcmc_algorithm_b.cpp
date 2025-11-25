@@ -35,8 +35,6 @@ inline double rtruncnorm_one(double mean, double a, double b) {
 arma::cube sample_z_cpp(const arma::cube& y,
                         const arma::vec&  mu,
                         const arma::mat&  delta,
-                        const arma::cube& X,
-                        const arma::mat&  beta,
                         const arma::mat&  U,
                         const arma::vec&  lambda,
                         const double      zeta,
@@ -46,7 +44,6 @@ arma::cube sample_z_cpp(const arma::cube& y,
      
      for (int k = 0; k < K; ++k) {
           const double    mu_k      = mu[k];
-          const arma::vec beta_k    = beta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
           for (int i = 0; i < n - 1; ++i) {
@@ -55,12 +52,10 @@ arma::cube sample_z_cpp(const arma::cube& y,
                
                for (int j = i + 1; j < n; ++j) {
                     const double       d_jk = delta(j, k);
-                    const arma::vec    x_ij = X.tube(i, j); 
-                    const double       xb   = arma::dot(x_ij, beta_k);
                     const arma::rowvec uj   = U.row(j);
                     const double       bi   = -exp_lam_k * arma::norm(ui - uj, 2);
                     
-                    const double mean_ijk = mu_k + zeta + d_ik + d_jk + xb + bi;
+                    const double mean_ijk = mu_k + zeta + d_ik + d_jk + bi;
                     
                     const bool edge_ijk = (y(i, j, k) > 0.5);
                     double z_ijk;
@@ -82,8 +77,6 @@ arma::cube sample_z_cpp(const arma::cube& y,
 double sample_zeta_cpp(const arma::cube& z,
                        const arma::vec&  mu,
                        const arma::mat&  delta,
-                       const arma::cube& X,
-                       const arma::mat&  beta,
                        const arma::mat&  U,
                        const arma::vec&  lambda,
                        const double      omega2,
@@ -98,7 +91,6 @@ double sample_zeta_cpp(const arma::cube& z,
      for (int k = 0; k < K; ++k) {
           const double    mu_k      = mu[k];
           const arma::vec del_k     = delta.col(k);
-          const arma::vec beta_k    = beta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
           for (int i = 0; i < n - 1; ++i) {
@@ -107,12 +99,10 @@ double sample_zeta_cpp(const arma::cube& z,
                
                for (int j = i + 1; j < n; ++j) {
                     const double       d_jk = del_k[j];
-                    const arma::vec    x_ij = X.tube(i, j);
-                    const double       xb   = arma::dot(x_ij, beta_k);
                     const arma::rowvec uj   = U.row(j);
                     const double       bi   = -exp_lam_k * arma::norm(ui - uj, 2);
                     
-                    sum_res += ( z(i, j, k) - mu_k - d_ik - d_jk - xb - bi);
+                    sum_res += ( z(i, j, k) - mu_k - d_ik - d_jk - bi);
                }
           }
      }
@@ -123,8 +113,6 @@ double sample_zeta_cpp(const arma::cube& z,
 arma::vec sample_mu_cpp(const arma::cube& z,
                         arma::vec         mu,
                         const arma::mat&  delta,
-                        const arma::cube& X,
-                        const arma::mat&  beta,
                         const arma::mat&  U,
                         const arma::vec&  lambda,
                         const double      zeta,
@@ -137,7 +125,6 @@ arma::vec sample_mu_cpp(const arma::cube& z,
      
      for (int k = 0; k < K; ++k) {
           double          sum_res   = 0.0;
-          const arma::vec beta_k    = beta.col(k);
           const arma::vec del_k     = delta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
@@ -147,12 +134,10 @@ arma::vec sample_mu_cpp(const arma::cube& z,
                
                for (int j = i + 1; j < n; ++j) {
                     const double       d_jk = del_k[j];
-                    const arma::vec    x_ij = X.tube(i, j);
-                    const double       xb   = arma::dot(x_ij, beta_k);
                     const arma::rowvec uj   = U.row(j);
                     const double       bi   = -exp_lam_k * arma::norm(ui - uj, 2);
                     
-                    sum_res += (z(i, j, k) - zeta - d_ik - d_jk - xb - bi);
+                    sum_res += (z(i, j, k) - zeta - d_ik - d_jk - bi);
                } 
           }
           
@@ -168,8 +153,6 @@ arma::mat sample_delta_cpp(const arma::cube& z,
                            const double      tau2,
                            arma::mat         delta,
                            const arma::vec&  vartheta,
-                           const arma::cube& X,
-                           const arma::mat&  beta,
                            const arma::mat&  U,
                            const arma::vec&  lambda,
                            const double      zeta,
@@ -180,7 +163,6 @@ arma::mat sample_delta_cpp(const arma::cube& z,
      
      for (int k = 0; k < K; ++k) {
           const double    mu_k      = mu[k];
-          const arma::vec beta_k    = beta.col(k);
           const arma::vec del_k     = delta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
@@ -191,12 +173,10 @@ arma::mat sample_delta_cpp(const arma::cube& z,
                for (int j = 0; j < n; ++j) {
                     if (j != i) {
                          const double       d_jk = del_k[j];
-                         const arma::vec    x_ij = X.tube(i, j);
-                         const double       xb   = arma::dot(x_ij, beta_k);
                          const arma::rowvec uj   = U.row(j);
                          const double       bi   = -exp_lam_k * arma::norm(ui - uj, 2);
                          
-                         sum_res += (z(i, j, k) - mu_k - zeta - d_jk - xb - bi);
+                         sum_res += (z(i, j, k) - mu_k - zeta - d_jk - bi);
                     }
                }  
                
@@ -225,68 +205,6 @@ arma::vec sample_vartheta_cpp(const arma::mat& delta,
      return vartheta;
 }  
 
-arma::mat sample_beta_cpp(const arma::cube& z,
-                          const arma::vec&  mu,
-                          const arma::mat&  delta,
-                          const arma::cube& X,
-                          const arma::mat&  U,
-                          const arma::vec&  lambda,
-                          const double      zeta,
-                          const double      varsigma2, 
-                          arma::mat         beta,
-                          const int         K,
-                          const int         n,
-                          const int         p) {
-     
-     const double inv_varsigma2 = 1.0 / varsigma2;
-     
-     arma::mat XtX(p, p, arma::fill::zeros);
-     arma::vec Xtr(p,    arma::fill::zeros);
-     
-     for (int k = 0; k < K; ++k) {
-          const double    mu_k  = mu[k];
-          const arma::vec del_k = delta.col(k);
-          const double exp_lam_k = std::exp(lambda[k]);
-          
-          XtX.zeros();
-          Xtr.zeros();
-          
-          for (int i = 0; i < n - 1; ++i) {
-               const double       d_ik = delta(i, k);
-               const arma::rowvec u_i  = U.row(i);
-               
-               for (int j = i + 1; j < n; ++j) {
-                    const double       d_jk  = delta(j, k);
-                    const arma::vec    x_ij  = X.tube(i, j);
-                    const arma::rowvec u_j   = U.row(j);
-                    const double       bi    = -exp_lam_k * arma::norm(u_i - u_j, 2);
-                    const double       r_ijk = z(i, j, k) - mu_k - zeta - d_ik - d_jk - bi;
-                    
-                    XtX += x_ij * x_ij.t();
-                    Xtr += x_ij * r_ijk;
-               } 
-          }
-          
-          // Posterior precision and mean: P = XtX + (1/varsigma2) I_p
-          arma::mat P = XtX;
-          P.diag() += inv_varsigma2 + 1e-10;
-          arma::mat R = arma::chol(P, "upper");
-          
-          // Solve for mean using the Cholesky
-          arma::vec y = arma::solve(arma::trimatl(R.t()), Xtr);
-          arma::vec m = arma::solve(arma::trimatu(R), y);
-          
-          // Draw beta_k
-          arma::vec eps(p);
-          for (int j = 0; j < p; ++j) eps[j] = R::rnorm(0.0, 1.0);
-          arma::vec noise = arma::solve(arma::trimatu(R), eps);
-          
-          beta.col(k) = m + noise;
-     } 
-     
-     return beta;
-} 
-
 inline double logpost_lambda(const double lam,
                              const double S1,
                              const double S2,
@@ -301,8 +219,6 @@ inline double logpost_lambda(const double lam,
 Rcpp::List sample_lambda_cpp(const arma::cube& z,
                              const arma::vec&  mu,
                              const arma::mat&  delta,
-                             const arma::cube& X,
-                             const arma::mat&  beta,
                              const arma::mat&  U,
                              arma::vec         lambda,
                              const double      zeta,
@@ -322,8 +238,7 @@ Rcpp::List sample_lambda_cpp(const arma::cube& z,
      const double gamma_t = gamma0 / std::sqrt(1.0 + static_cast<double>(iter));
      
      for (int k = 0; k < K; ++k) {
-          const double    mu_k   = mu[k];
-          const arma::vec beta_k = beta.col(k);
+          const double    mu_k = mu[k];
           
           // S1_k = sum_{i<j} r_ij,k * ||u_i - u_j||
           // S2   = sum_{i<j} ||u_i - u_j||^2
@@ -337,10 +252,8 @@ Rcpp::List sample_lambda_cpp(const arma::cube& z,
                for (int j = i + 1; j < n; ++j) {
                     const double       d_jk = delta(j, k);
                     const arma::rowvec u_j  = U.row(j);
-                    const arma::vec    x_ij = X.tube(i, j); 
                     const double       d_ij = arma::norm(u_i - u_j, 2);
-                    const double       xb   = arma::dot(x_ij, beta_k);
-                    const double       r_ij = z(i, j, k) - mu_k - zeta - d_ik - d_jk - xb;
+                    const double       r_ij = z(i, j, k) - mu_k - zeta - d_ik - d_jk;
                     
                     S1 += r_ij * d_ij;
                     S2 += d_ij * d_ij;
@@ -373,7 +286,7 @@ Rcpp::List sample_lambda_cpp(const arma::cube& z,
                log_step_k += gamma_t * (static_cast<double>(accepted) - target);
           }
           
-          // Clamp per-layer log-step
+          // Clamp per-layer log-step (lambda can tolerate a bit wider range)
           log_step_k  = std::min(std::max(log_step_k, std::log(1e-6)), std::log(5.0));
           log_step[k] = log_step_k;
      }
@@ -393,21 +306,17 @@ inline double logpost_ui(const arma::rowvec& ui,
                          const arma::cube&   z,
                          const arma::vec&    mu,
                          const arma::mat&    delta,
-                         const arma::cube&   X,
-                         const arma::mat&    beta,
                          const arma::mat&    U,
                          const arma::vec&    lambda,
                          const double        zeta,
                          const int           K,
-                         const int           n,
-                         const int           p) {
+                         const int           n) {
      
      double S1_total = 0.0;  // sum_k e^{λ_k}  * sum_{j≠i} r_{ij,k} d_ij
      double S2_total = 0.0;  // sum_k e^{2λ_k} * sum_{j≠i} d_ij^2
      
      for (int k = 0; k < K; ++k) {
           const double    mu_k   = mu[k];
-          const arma::vec beta_k = beta.col(k);
           const double    el     = std::exp(lambda[k]);
           const double    el2    = el * el;
           
@@ -417,9 +326,7 @@ inline double logpost_ui(const arma::rowvec& ui,
           for (int j = 0; j < n; ++j) {
                if (j != i) {
                     const arma::rowvec uj   = U.row(j);
-                    const arma::vec    x_ij = X.tube(i, j);
-                    const double       xb   = arma::dot(x_ij, beta_k);
-                    const double       rij  = z(i, j, k) - mu_k - zeta - delta(i, k) - delta(j, k) - xb;
+                    const double       rij  = z(i, j, k) - mu_k - zeta - delta(i, k) - delta(j, k);
                     const double       dij  = arma::norm(ui - uj, 2);
                     
                     S1_k += rij * dij;
@@ -438,15 +345,12 @@ inline double logpost_ui(const arma::rowvec& ui,
 Rcpp::List sample_U_cpp(const arma::cube& z,
                         const arma::vec&  mu,
                         const arma::mat&  delta,
-                        const arma::cube& X,
-                        const arma::mat&  beta,
                         arma::mat         U,
                         const arma::vec&  lambda,
                         const double      zeta,
                         arma::vec         log_step,
                         const int         K,
                         const int         n,
-                        const int         p,
                         const int         d,
                         const int         iter,
                         const int         burn_in,
@@ -474,16 +378,8 @@ Rcpp::List sample_U_cpp(const arma::cube& z,
           
           const arma::rowvec ui_prop = ui_curr + scale_i * eps;
           
-          const double lp_curr = logpost_ui(ui_curr, i,
-                                            z, mu, delta,
-                                            X, beta,
-                                            U, lambda, zeta,
-                                            K, n, p);
-          const double lp_prop = logpost_ui(ui_prop, i,
-                                            z, mu, delta,
-                                            X, beta,
-                                            U, lambda, zeta,
-                                            K, n, p);
+          const double lp_curr = logpost_ui(ui_curr, i, z, mu, delta, U, lambda, zeta, K, n);
+          const double lp_prop = logpost_ui(ui_prop, i, z, mu, delta, U, lambda, zeta, K, n);
           const double log_r   = lp_prop - lp_curr;
           const double log_u   = std::log(R::runif(0.0, 1.0));
           
@@ -496,6 +392,7 @@ Rcpp::List sample_U_cpp(const arma::cube& z,
           
           // Per-node adaptation of log_step_i (Robbins–Monro)
           if (burn_in > 0 && iter <= burn_in) {
+               // use the Bernoulli(accepted) as a local "acc_rate_i"
                log_step_i += gamma_t * (static_cast<double>(accepted) - target);
           }
           
@@ -571,20 +468,6 @@ double sample_kappa2_cpp(const arma::vec& vartheta,
      return 1.0 / R::rgamma(A, 1.0 / B);
 }
 
-double sample_varsigma2_cpp(const arma::mat& beta,
-                            const double a_varsigma,
-                            const double b_varsigma,
-                            const int    K,
-                            const int    p) {
-     
-     const double ss = arma::accu(arma::square(beta));
-     
-     const double A = a_varsigma + 0.5 * static_cast<double>(K * p);
-     const double B = b_varsigma + 0.5 * ss;
-     
-     return 1.0 / R::rgamma(A, 1.0 / B);
-}
-
 double sample_upsilon2_cpp(const arma::vec& lambda,
                            const double     a_u,
                            const double     b_u,
@@ -598,27 +481,23 @@ double sample_upsilon2_cpp(const arma::vec& lambda,
 
 // [[Rcpp::export]]
 Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
-                                    const arma::cube& X,
                                     const int         d,
                                     const int n_iter, const int n_burn, const int n_thin,
                                     const double a_omega,    const double b_omega,
                                     const double a_sigma,    const double b_sigma,
                                     const double a_tau,      const double b_tau,
                                     const double a_kappa,    const double b_kappa,
-                                    const double a_varsigma, const double b_varsigma,
                                     const double a_upsilon,  const double b_upsilon) {
      
      // Dimensions
      const int n = y.n_rows;
      const int K = y.n_slices;
-     const int p = X.n_slices;
      
      // Initialize
      double omega2    = 1.0 / R::rgamma(a_omega,    1.0 / b_omega);
      double sigma2    = 1.0 / R::rgamma(a_sigma,    1.0 / b_sigma);
      double tau2      = 1.0 / R::rgamma(a_tau,      1.0 / b_tau);
      double kappa2    = 1.0 / R::rgamma(a_kappa,    1.0 / b_kappa);
-     double varsigma2 = 1.0 / R::rgamma(a_varsigma, 1.0 / b_varsigma);
      double upsilon2  = 1.0 / R::rgamma(a_upsilon,  1.0 / b_upsilon);
      
      double zeta = R::rnorm(0.0, std::sqrt(omega2));
@@ -630,7 +509,6 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
      for (int i = 0; i < n; ++i) vartheta[i] = R::rnorm(0.0, std::sqrt(kappa2));
      
      arma::mat  delta(n, K, arma::fill::zeros);
-     arma::mat  beta (p, K, arma::fill::zeros);
      arma::cube z(n, n, K, arma::fill::zeros);
      
      arma::vec lambda(K);
@@ -663,7 +541,6 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
      const int n_samples = (n_iter - n_burn) / n_thin;
      
      arma::cube  store_delta     (n_samples, n, K, arma::fill::zeros);
-     arma::cube  store_beta      (n_samples, p, K, arma::fill::zeros);
      arma::cube  store_U         (n_samples, n, d, arma::fill::zeros);
      
      arma::mat   store_mu        (n_samples, K, arma::fill::zeros);
@@ -675,7 +552,6 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
      arma::vec   store_sigma2    (n_samples, arma::fill::zeros);
      arma::vec   store_tau2      (n_samples, arma::fill::zeros);
      arma::vec   store_kappa2    (n_samples, arma::fill::zeros);
-     arma::vec   store_varsigma2 (n_samples, arma::fill::zeros);
      arma::vec   store_upsilon2  (n_samples, arma::fill::zeros);
      
      // Sampling
@@ -687,7 +563,7 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
           // RW–MH blocks with shared, adaptive step sizes
           {
                // U update
-               Rcpp::List resU = sample_U_cpp(z, mu, delta, X, beta, U, lambda, zeta, log_step_U, K, n, p, d, iter, n_burn, target_U, eta0);
+               Rcpp::List resU = sample_U_cpp(z, mu, delta, U, lambda, zeta, log_step_U, K, n, d, iter, n_burn, target_U, eta0);
                U            = Rcpp::as<arma::mat>(resU["U"]);
                log_step_U   = Rcpp::as<arma::vec>(resU["log_step"]);
                cum_acc_U   += Rcpp::as<int>(resU["n_accepted"]);
@@ -695,7 +571,7 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
           } 
           {
                // lambda update
-               Rcpp::List resL = sample_lambda_cpp(z, mu, delta, X, beta, U, lambda, zeta, upsilon2, log_step_lambda, K, n, iter, n_burn, target_lambda, eta0);
+               Rcpp::List resL = sample_lambda_cpp(z, mu, delta, U, lambda, zeta, upsilon2, log_step_lambda, K, n, iter, n_burn, target_lambda, eta0);
                lambda          = Rcpp::as<arma::vec>(resL["lambda"]);
                log_step_lambda = Rcpp::as<arma::vec>(resL["log_step"]);
                cum_acc_L      += Rcpp::as<int>(resL["n_accepted"]);
@@ -703,17 +579,15 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
           }
           
           // Update model parameters
-          z         = sample_z_cpp(y, mu, delta, X, beta, U, lambda, zeta, z, K, n);
-          zeta      = sample_zeta_cpp(z, mu, delta, X, beta, U, lambda, omega2, K, n);
-          mu        = sample_mu_cpp(z, mu, delta, X, beta, U, lambda, zeta, sigma2, K, n);
-          delta     = sample_delta_cpp(z, mu, tau2, delta, vartheta, X, beta, U, lambda, zeta, K, n);
+          z         = sample_z_cpp(y, mu, delta, U, lambda, zeta, z, K, n);
+          zeta      = sample_zeta_cpp(z, mu, delta, U, lambda, omega2, K, n);
+          mu        = sample_mu_cpp(z, mu, delta, U, lambda, zeta, sigma2, K, n);
+          delta     = sample_delta_cpp(z, mu, tau2, delta, vartheta, U, lambda, zeta, K, n);
           vartheta  = sample_vartheta_cpp(delta, vartheta, kappa2, tau2, n, K);
-          beta      = sample_beta_cpp(z, mu, delta, X, U, lambda, zeta, varsigma2, beta, K, n, p);
           omega2    = sample_omega2_cpp(zeta, a_omega, b_omega);
           sigma2    = sample_sigma2_cpp(mu, a_sigma, b_sigma, K);
           tau2      = sample_tau2_cpp(delta, vartheta, a_tau, b_tau, n, K);
           kappa2    = sample_kappa2_cpp(vartheta, a_kappa, b_kappa, n);
-          varsigma2 = sample_varsigma2_cpp(beta, a_varsigma, b_varsigma, K, p);
           upsilon2  = sample_upsilon2_cpp(lambda, a_upsilon, b_upsilon, K);
           
           // Store
@@ -723,10 +597,6 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
                for (int k = 0; k < K; ++k)
                     for (int i = 0; i < n; ++i)
                          store_delta(pos, i, k) = delta(i, k);
-               
-               for (int k = 0; k < K; ++k)
-                    for (int j = 0; j < p; ++j)
-                         store_beta(pos, j, k) = beta(j, k);
                
                for (int k = 0; k < K; ++k)
                     store_lambda(pos, k) = lambda[k];
@@ -743,7 +613,6 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
                store_sigma2   [pos]     = sigma2;
                store_tau2     [pos]     = tau2;
                store_kappa2   [pos]     = kappa2;
-               store_varsigma2[pos]     = varsigma2;
                store_upsilon2 [pos]     = upsilon2;
           }
           
@@ -766,21 +635,18 @@ Rcpp::List gibbs_sampler_multilayer(const arma::cube& y,
           Rcpp::Named("mu")         = store_mu,
           Rcpp::Named("delta")      = store_delta,
           Rcpp::Named("vartheta")   = store_vartheta,
-          Rcpp::Named("beta")       = store_beta,
           Rcpp::Named("lambda")     = store_lambda,
           Rcpp::Named("U")          = store_U,
           Rcpp::Named("omega2")     = store_omega2,
           Rcpp::Named("sigma2")     = store_sigma2,
           Rcpp::Named("tau2")       = store_tau2,
           Rcpp::Named("kappa2")     = store_kappa2,
-          Rcpp::Named("varsigma2")  = store_varsigma2,
           Rcpp::Named("upsilon2")   = store_upsilon2
      );
 }
 
 // [[Rcpp::export]]
 arma::vec log_likelihood_multilayer_cpp(const arma::cube& y,
-                                        const arma::cube& X,
                                         const Rcpp::List& samples) {
      
      const int n = y.n_rows;
@@ -789,7 +655,6 @@ arma::vec log_likelihood_multilayer_cpp(const arma::cube& y,
      arma::vec  zeta   = samples["zeta"];
      arma::mat  mu     = samples["mu"];
      arma::cube delta  = samples["delta"];
-     arma::cube beta   = samples["beta"];
      arma::mat  lambda = samples["lambda"];
      arma::cube Ucube  = samples["U"];
      
@@ -811,16 +676,13 @@ arma::vec log_likelihood_multilayer_cpp(const arma::cube& y,
           for (int k = 0; k < K; ++k) {
                const double       mu_k      = mu(s, k);
                const arma::rowvec del_k     = delta.slice(k).row(s);
-               const arma::rowvec bet_k     = beta.slice(k).row(s);
                const double       exp_lam_k = std::exp(lambda(s, k));
                
                for (int i = 0; i < n - 1; ++i) {
                     for (int j = i + 1; j < n; ++j) {
-                         const arma::vec x_ij = X.tube(i, j);  
-                         const double    xb   = arma::dot(x_ij, bet_k.t());
                          const double    bi   = - exp_lam_k * arma::norm(U_s.row(i) - U_s.row(j), 2);
                          
-                         const double eta_ijk = mu_k + zeta_s + del_k[i] + del_k[j] + xb + bi;
+                         const double eta_ijk = mu_k + zeta_s + del_k[i] + del_k[j] + bi;
                          const double p_ijk   = R::pnorm5(eta_ijk, 0.0, 1.0, 1, 0);
                          const double y_ijk   = y(i, j, k);
                          
@@ -838,8 +700,6 @@ arma::vec log_likelihood_multilayer_cpp(const arma::cube& y,
 double log_likelihood_iter_cpp(const arma::cube& y,
                                const arma::vec&  mu,
                                const arma::mat&  delta,
-                               const arma::cube& X,
-                               const arma::mat&  beta,
                                const arma::mat&  S,
                                const arma::vec&  lambda,
                                const double      zeta,
@@ -853,7 +713,6 @@ double log_likelihood_iter_cpp(const arma::cube& y,
      for (int k = 0; k < K; ++k) {
           const double    mu_k      = mu[k];
           const arma::vec del_k     = delta.col(k);
-          const arma::vec bet_k     = beta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
           for (int i = 0; i < n - 1; ++i) {
@@ -868,11 +727,9 @@ double log_likelihood_iter_cpp(const arma::cube& y,
                     const double dij  = std::sqrt(dij2);
                     
                     const double    d_jk = del_k[j];
-                    const arma::vec x_ij = X.tube(i, j);
-                    const double    xb   = arma::dot(x_ij, bet_k);
                     const double    bi   = - exp_lam_k * dij;
                     
-                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + xb + bi;
+                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + bi;
                     const double p_ijk   = R::pnorm5(eta_ijk, 0.0, 1.0, 1, 0);
                     const double y_ijk   = y(i, j, k);
                     
@@ -888,8 +745,6 @@ double log_likelihood_iter_cpp(const arma::cube& y,
 arma::vec log_likelihood_pointwise_cpp(const arma::cube& y,
                                        const arma::vec&  mu,
                                        const arma::mat&  delta,
-                                       const arma::cube& X,
-                                       const arma::mat&  beta,
                                        const arma::mat&  U, 
                                        const arma::vec&  lambda,
                                        const double      zeta,
@@ -905,7 +760,6 @@ arma::vec log_likelihood_pointwise_cpp(const arma::cube& y,
      for (int k = 0; k < K; ++k) {
           const double    mu_k      = mu[k];
           const arma::vec del_k     = delta.col(k);
-          const arma::vec bet_k     = beta.col(k);
           const double    exp_lam_k = std::exp(lambda[k]);
           
           for (int i = 0; i < n - 1; ++i) {
@@ -914,12 +768,10 @@ arma::vec log_likelihood_pointwise_cpp(const arma::cube& y,
                
                for (int j = i + 1; j < n; ++j) {
                     const double       d_jk = del_k[j];
-                    const arma::vec    x_ij = X.tube(i, j);
-                    const double       xb   = arma::dot(x_ij, bet_k);
                     const arma::rowvec uj   = U.row(j);
                     const double       bi   = - exp_lam_k * arma::norm(ui - uj, 2);
                     
-                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + xb + bi;
+                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + bi;
                     const double p_ijk   = R::pnorm5(eta_ijk, 0.0, 1.0, 1, 0);
                     const double y_ijk   = y(i, j, k);
                     
@@ -934,24 +786,11 @@ arma::vec log_likelihood_pointwise_cpp(const arma::cube& y,
 // [[Rcpp::export]]
 arma::cube interaction_prob_cpp(const arma::vec&  mu,
                                 const arma::mat&  delta,
-                                const arma::cube& X,
-                                const arma::mat&  beta,
                                 const arma::mat&  U,
                                 const arma::vec&  lambda,
                                 const double      zeta) {
-     const int n = U.n_rows;
+     const int n = delta.n_rows;
      const int K = mu.n_elem;
-     const int p = X.n_slices;
-     
-     // Precompute Xbeta per layer: Xbeta_k = sum_s X[,,s] * beta_{s,k}
-     arma::cube Xbeta(n, n, K, arma::fill::zeros);
-     for (int s = 0; s < p; ++s) {
-          const arma::mat  Xs = X.slice(s);
-          const arma::rowvec bs = beta.row(s);
-          for (int k = 0; k < K; ++k) {
-               Xbeta.slice(k) += Xs * bs[k];
-          }
-     }
      
      // Precompute pairwise distances D (shared across layers)
      arma::mat D(n, n, arma::fill::zeros);
@@ -978,10 +817,9 @@ arma::cube interaction_prob_cpp(const arma::vec&  mu,
                
                for (int j = i + 1; j < n; ++j) {
                     const double d_jk = del_k[j];
-                    const double xb   = Xbeta(i, j, k);
                     const double bi   = - exp_lam_k * D(i, j);
                     
-                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + xb + bi;
+                    const double eta_ijk = mu_k + zeta + d_ik + d_jk + bi;
                     const double p_ijk   = R::pnorm5(eta_ijk, 0.0, 1.0, 1, 0);
                     
                     P(i, j, k) = p_ijk;
@@ -998,18 +836,16 @@ arma::cube interaction_prob_cpp(const arma::vec&  mu,
 // [[Rcpp::export]]
 arma::cube simulate_multilayer_network_cpp(const arma::vec&  mu,
                                            const arma::mat&  delta,
-                                           const arma::cube& X,
-                                           const arma::mat&  beta,
                                            const arma::mat&  U,
                                            const arma::vec&  lambda,
                                            const double      zeta) {
      
-     const int n = X.n_rows;
+     const int n = delta.n_rows;
      const int K = mu.n_elem;
      
      arma::cube Y(n, n, K, arma::fill::zeros);
      
-     arma::cube P = interaction_prob_cpp(mu, delta, X, beta, U, lambda, zeta);
+     arma::cube P = interaction_prob_cpp(mu, delta, U, lambda, zeta);
      
      for (int k = 0; k < K; ++k) {
           for (int i = 0; i < n - 1; ++i) {

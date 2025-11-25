@@ -1,0 +1,24 @@
+> plot_band_posterior_networks("metallica")
+       layer   ARI
+1   loudness 0.017
+2 brightness 0.023
+3   tonality 0.029
+4     rhythm 0.027
+> plot_band_posterior_networks("slayer")
+       layer   ARI
+1   loudness 0.012
+2 brightness 0.061
+3   tonality 0.049
+4     rhythm 0.031
+> plot_band_posterior_networks("megadeth")
+       layer   ARI
+1   loudness 0.010
+2 brightness 0.007
+3   tonality 0.018
+4     rhythm 0.008
+> plot_band_posterior_networks("anthrax")
+       layer   ARI
+1   loudness 0.017
+2 brightness 0.006
+3   tonality 0.028
+4     rhythm 0.036

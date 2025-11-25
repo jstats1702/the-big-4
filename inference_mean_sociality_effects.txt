@@ -1,0 +1,40 @@
+> summarize_vartheta_band("metallica")[1:10, ]
+                       Song                   Album  Mean Lower Upper
+1             turn_the_page              garage_inc 0.823 0.479 1.167
+2                   battery       master_of_puppets 0.708 0.366 1.050
+3    sleepwalk_my_life_away              72_seasons 0.638 0.285 0.991
+4   that_was_just_your_life          death_magnetic 0.604 0.250 0.962
+5  free_speech_for_the_dumb              garage_inc 0.597 0.196 1.000
+6           prince_charming                  reload 0.415 0.047 0.786
+7             fade_to_black      ride_the_lightning 0.410 0.056 0.761
+8           the_small_hours garage_days_rerevisited 0.406 0.047 0.767
+9           better_than_you                  reload 0.392 0.035 0.752
+10  for_whom_the_bell_tolls      ride_the_lightning 0.368 0.012 0.722
+> summarize_vartheta_band("slayer")
+                   Song               Album  Mean Lower Upper
+1 read_between_the_lies     south_of_heaven 0.983 0.608 1.367
+2   dissident_aggressor     south_of_heaven 0.694 0.330 1.060
+3           hell_awaits         hell_awaits 0.530 0.164 0.898
+4   world_painted_blood world_painted_blood 0.525 0.162 0.884
+5         silent_scream     south_of_heaven 0.508 0.140 0.879
+6                 jihad     christ_illusion 0.425 0.053 0.793
+7     the_final_command       show_no_mercy 0.386 0.013 0.756
+> summarize_vartheta_band("megadeth") [1:10, ]
+                       Song                       Album  Mean Lower Upper
+1                 kingmaker              super_collider 1.020 0.709 1.329
+2                       fff            cryptic_writings 0.935 0.612 1.258
+3  whose_life_is_it_anyways                    th1rt3en 0.832 0.507 1.146
+4       united_abominations         united_abominations 0.594 0.277 0.913
+5       dont_turn_your_back              super_collider 0.571 0.251 0.889
+6             my_last_words peace_sells_but_whos_buying 0.466 0.144 0.786
+7        the_threat_is_real                    dystopia 0.447 0.133 0.764
+8            conquer_or_die                    dystopia 0.400 0.031 0.765
+9              silent_scorn      the_world_needs_a_hero 0.385 0.015 0.754
+10                    trust            cryptic_writings 0.373 0.049 0.696
+> summarize_vartheta_band("anthrax")
+              Song                 Album  Mean Lower Upper
+1          contact weve_come_for_you_all 0.547 0.180 0.920
+2   be_all_end_all     state_of_euphoria 0.470 0.136 0.807
+3    worship_intro         worship_music 0.399 0.015 0.783
+4         im_alive         worship_music 0.391 0.037 0.749
+5 caught_in_a_mosh      among_the_living 0.356 0.010 0.702

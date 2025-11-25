@@ -1,0 +1,131 @@
+> plot_beta_posterior(layer = 1, band = "metallica", range_y = c(-1,1)*0.5, coef_names = coef_names)
+       Band Layer Coef        Mean          L95         U95          Sign
+1 METALLICA     1 year -0.25245618 -0.334385414 -0.17157495      negative
+2 METALLICA     1  bmp  0.07255734  0.003548842  0.14175366      positive
+3 METALLICA     1  dur -0.10105528 -0.175720821 -0.02657921      negative
+4 METALLICA     1  alb  0.24203047  0.030599532  0.45077048      positive
+5 METALLICA     1  emo -0.04386028 -0.148787565  0.06139782 includes_zero
+6 METALLICA     1  vad  0.09756322 -0.015889631  0.21222548 includes_zero
+> plot_beta_posterior(layer = 2, band = "metallica", range_y = c(-1,1)*0.5, coef_names = coef_names)
+       Band Layer Coef         Mean         L95          U95          Sign
+1 METALLICA     2 year -0.061778418 -0.13536974  0.011674859 includes_zero
+2 METALLICA     2  bmp -0.073655551 -0.14045490 -0.006821719      negative
+3 METALLICA     2  dur -0.037545910 -0.11235261  0.036830526 includes_zero
+4 METALLICA     2  alb  0.086423838 -0.14263367  0.310817857 includes_zero
+5 METALLICA     2  emo  0.009840981 -0.09748329  0.118356497 includes_zero
+6 METALLICA     2  vad  0.008349660 -0.11049498  0.126648803 includes_zero
+> plot_beta_posterior(layer = 3, band = "metallica", range_y = c(-1,1)*0.5, coef_names = coef_names)
+       Band Layer Coef        Mean          L95           U95          Sign
+1 METALLICA     3 year -0.25884403 -0.342872071 -1.750116e-01      negative
+2 METALLICA     3  bmp -0.05011993 -0.117143923  1.653833e-02 includes_zero
+3 METALLICA     3  dur -0.07557328 -0.151380215  7.774135e-05 includes_zero
+4 METALLICA     3  alb -0.07264397 -0.296387111  1.477661e-01 includes_zero
+5 METALLICA     3  emo  0.12497530  0.008249443  2.444012e-01      positive
+6 METALLICA     3  vad  0.04680257 -0.074262848  1.664141e-01 includes_zero
+> plot_beta_posterior(layer = 4, band = "metallica", range_y = c(-1,1)*0.5, coef_names = coef_names)
+       Band Layer Coef        Mean         L95         U95          Sign
+1 METALLICA     4 year -0.07662000 -0.15648432 0.002723034 includes_zero
+2 METALLICA     4  bmp -0.01258171 -0.08093679 0.055611529 includes_zero
+3 METALLICA     4  dur -0.07218705 -0.14958172 0.004398169 includes_zero
+4 METALLICA     4  alb  0.11826654 -0.12032984 0.348718675 includes_zero
+5 METALLICA     4  emo -0.06339352 -0.17314320 0.046530401 includes_zero
+6 METALLICA     4  vad -0.01379275 -0.13536169 0.107405315 includes_zero
+> 
+> plot_beta_posterior(layer = 1, band = "slayer", range_y = c(-1,1)*0.5, coef_names = coef_names)
+    Band Layer Coef         Mean         L95        U95          Sign
+1 SLAYER     1 year -0.038308148 -0.11601360 0.03982739 includes_zero
+2 SLAYER     1  bmp  0.001927006 -0.06967210 0.07458054 includes_zero
+3 SLAYER     1  dur -0.019388599 -0.10320642 0.06525003 includes_zero
+4 SLAYER     1  alb  0.053516283 -0.20110510 0.30598074 includes_zero
+5 SLAYER     1  emo  0.060356554 -0.09999278 0.22121021 includes_zero
+6 SLAYER     1  vad  0.083822884 -0.08064453 0.24766021 includes_zero
+> plot_beta_posterior(layer = 2, band = "slayer", range_y = c(-1,1)*0.5, coef_names = coef_names)
+    Band Layer Coef        Mean          L95        U95          Sign
+1 SLAYER     2 year -0.06993525 -0.154400636 0.01464879 includes_zero
+2 SLAYER     2  bmp  0.07049225 -0.002435526 0.14343967 includes_zero
+3 SLAYER     2  dur -0.02224424 -0.099088270 0.05520994 includes_zero
+4 SLAYER     2  alb -0.06553921 -0.312701843 0.17694395 includes_zero
+5 SLAYER     2  emo  0.10936914 -0.045238585 0.26399279 includes_zero
+6 SLAYER     2  vad  0.14822910 -0.007429421 0.30383975 includes_zero
+> plot_beta_posterior(layer = 3, band = "slayer", range_y = c(-1,1)*0.5, coef_names = coef_names)
+    Band Layer Coef          Mean         L95        U95          Sign
+1 SLAYER     3 year -0.0321333495 -0.12146183 0.05843491 includes_zero
+2 SLAYER     3  bmp -0.0558501698 -0.12972393 0.01825771 includes_zero
+3 SLAYER     3  dur -0.0003677743 -0.08103532 0.08108224 includes_zero
+4 SLAYER     3  alb  0.3342960871  0.11598465 0.55177524      positive
+5 SLAYER     3  emo -0.0895401721 -0.24431140 0.06557971 includes_zero
+6 SLAYER     3  vad -0.0329978269 -0.18900655 0.12182077 includes_zero
+> plot_beta_posterior(layer = 4, band = "slayer", range_y = c(-1,1)*0.5, coef_names = coef_names)
+    Band Layer Coef         Mean          L95        U95          Sign
+1 SLAYER     4 year  0.087653149  0.003462354 0.17149930      positive
+2 SLAYER     4  bmp  0.009067956 -0.067269141 0.08561283 includes_zero
+3 SLAYER     4  dur  0.045906272 -0.036677566 0.12875497 includes_zero
+4 SLAYER     4  alb  0.284874017  0.025550285 0.54265229      positive
+5 SLAYER     4  emo -0.148678460 -0.314074520 0.01824642 includes_zero
+6 SLAYER     4  vad -0.019923443 -0.185628669 0.14597181 includes_zero
+> 
+> plot_beta_posterior(layer = 1, band = "megadeth", range_y = c(-1,1)*0.5, coef_names = coef_names)
+      Band Layer Coef        Mean         L95          U95          Sign
+1 MEGADETH     1 year -0.05217526 -0.11358077  0.009068399 includes_zero
+2 MEGADETH     1  bmp -0.06106199 -0.12008152 -0.001934653      negative
+3 MEGADETH     1  dur -0.03324970 -0.10267969  0.035785285 includes_zero
+4 MEGADETH     1  alb -0.13993275 -0.38389683  0.096010804 includes_zero
+5 MEGADETH     1  emo  0.05842606 -0.05555618  0.172534735 includes_zero
+6 MEGADETH     1  vad  0.06336092 -0.04440216  0.173235948 includes_zero
+> plot_beta_posterior(layer = 2, band = "megadeth", range_y = c(-1,1)*0.5, coef_names = coef_names)
+      Band Layer Coef         Mean          L95        U95          Sign
+1 MEGADETH     2 year  0.072057358  0.013415631 0.13116355      positive
+2 MEGADETH     2  bmp  0.053789167 -0.001093778 0.10868153 includes_zero
+3 MEGADETH     2  dur -0.007100883 -0.070143741 0.05546912 includes_zero
+4 MEGADETH     2  alb  0.052032611 -0.179353164 0.27787160 includes_zero
+5 MEGADETH     2  emo  0.054067060 -0.049544665 0.15907459 includes_zero
+6 MEGADETH     2  vad  0.072823519 -0.028570511 0.17482736 includes_zero
+> plot_beta_posterior(layer = 3, band = "megadeth", range_y = c(-1,1)*0.5, coef_names = coef_names)
+      Band Layer Coef        Mean         L95         U95          Sign
+1 MEGADETH     3 year  0.02374931 -0.04123973 0.088165353 includes_zero
+2 MEGADETH     3  bmp  0.01207849 -0.04688148 0.070744132 includes_zero
+3 MEGADETH     3  dur -0.06853523 -0.13886923 0.001176793 includes_zero
+4 MEGADETH     3  alb  0.25491400  0.03947888 0.466249339      positive
+5 MEGADETH     3  emo -0.09434294 -0.20221851 0.013750689 includes_zero
+6 MEGADETH     3  vad -0.06258985 -0.17157587 0.048182211 includes_zero
+> plot_beta_posterior(layer = 4, band = "megadeth", range_y = c(-1,1)*0.5, coef_names = coef_names)
+      Band Layer Coef        Mean         L95        U95          Sign
+1 MEGADETH     4 year  0.04498294 -0.01482083 0.10499818 includes_zero
+2 MEGADETH     4  bmp -0.02561832 -0.08437876 0.03299025 includes_zero
+3 MEGADETH     4  dur  0.01776297 -0.05095959 0.08573078 includes_zero
+4 MEGADETH     4  alb  0.29414652  0.08143093 0.50092224      positive
+5 MEGADETH     4  emo  0.01849142 -0.08880487 0.12772923 includes_zero
+6 MEGADETH     4  vad  0.03160148 -0.06989119 0.13406484 includes_zero
+> 
+> plot_beta_posterior(layer = 1, band = "anthrax", range_y = c(-1,1)*0.5, coef_names = coef_names)
+     Band Layer Coef         Mean         L95         U95          Sign
+1 ANTHRAX     1 year -0.168187199 -0.25135077 -0.08606356      negative
+2 ANTHRAX     1  bmp -0.007390418 -0.07875447  0.06334691 includes_zero
+3 ANTHRAX     1  dur -0.068818543 -0.16949788  0.03131111 includes_zero
+4 ANTHRAX     1  alb -0.046553933 -0.28162260  0.18430040 includes_zero
+5 ANTHRAX     1  emo  0.054041833 -0.09330856  0.20245610 includes_zero
+6 ANTHRAX     1  vad  0.006208914 -0.13578254  0.15128573 includes_zero
+> plot_beta_posterior(layer = 2, band = "anthrax", range_y = c(-1,1)*0.5, coef_names = coef_names)
+     Band Layer Coef        Mean         L95         U95          Sign
+1 ANTHRAX     2 year -0.02941776 -0.10698640 0.047878031 includes_zero
+2 ANTHRAX     2  bmp  0.04527752 -0.02676163 0.117538013 includes_zero
+3 ANTHRAX     2  dur -0.08524564 -0.17795212 0.007570802 includes_zero
+4 ANTHRAX     2  alb  0.11443694 -0.12095665 0.347408928 includes_zero
+5 ANTHRAX     2  emo -0.13074267 -0.26554512 0.003726921 includes_zero
+6 ANTHRAX     2  vad -0.07507380 -0.18976677 0.039132942 includes_zero
+> plot_beta_posterior(layer = 3, band = "anthrax", range_y = c(-1,1)*0.5, coef_names = coef_names)
+     Band Layer Coef        Mean         L95          U95          Sign
+1 ANTHRAX     3 year -0.03069893 -0.10845879  0.046632983 includes_zero
+2 ANTHRAX     3  bmp -0.06954621 -0.14139210  0.001583766 includes_zero
+3 ANTHRAX     3  dur -0.11079278 -0.20406746 -0.017642114      negative
+4 ANTHRAX     3  alb  0.19116266 -0.03855957  0.418321691 includes_zero
+5 ANTHRAX     3  emo -0.06401329 -0.20268757  0.075228959 includes_zero
+6 ANTHRAX     3  vad -0.02478877 -0.15047527  0.101765008 includes_zero
+> plot_beta_posterior(layer = 4, band = "anthrax", range_y = c(-1,1)*0.5, coef_names = coef_names)
+     Band Layer Coef        Mean         L95        U95          Sign
+1 ANTHRAX     4 year -0.05074634 -0.13085362 0.02921837 includes_zero
+2 ANTHRAX     4  bmp  0.12038663  0.04874364 0.19242042      positive
+3 ANTHRAX     4  dur -0.05540636 -0.15296283 0.04195544 includes_zero
+4 ANTHRAX     4  alb  0.21609146 -0.01584317 0.44332027 includes_zero
+5 ANTHRAX     4  emo -0.01221181 -0.15618097 0.13294649 includes_zero
+6 ANTHRAX     4  vad -0.05754036 -0.19862738 0.08256626 includes_zero

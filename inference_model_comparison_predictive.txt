@@ -1,0 +1,79 @@
+> compute_model_metrics_table("metallica")
+           auc brier logloss      dic     waic
+SMN      0.715 0.025   0.115 8757.926 8786.659
+SMN-C    0.733 0.025   0.113 8667.141 8699.057
+SMN-C-BG 0.837 0.023   0.096 7734.479 7750.032
+SMN-C-LD 0.847 0.022   0.093 7460.323 7626.480
+SMN-C-SB 0.919 0.022   0.082 6494.318 6669.791
+
+> compute_model_metrics_table("slayer")
+           auc brier logloss      dic     waic
+SMN      0.714 0.030   0.130 6969.393 6995.004
+SMN-C    0.721 0.029   0.129 6942.133 6973.644
+SMN-C-BG 0.838 0.026   0.108 6153.818 6184.103
+SMN-C-LD 0.847 0.026   0.106 5995.067 6134.855
+SMN-C-SB 0.897 0.026   0.098 5486.245 5645.787
+
+> compute_model_metrics_table("megadeth")
+           auc brier logloss       dic      waic
+SMN      0.722 0.020   0.095 11722.663 11754.791
+SMN-C    0.724 0.020   0.095 11736.792 11774.724
+SMN-C-BG 0.761 0.020   0.092 11672.784 11723.345
+SMN-C-LD 0.845 0.018   0.078 10082.736 10286.486
+SMN-C-SB 0.924 0.018   0.069  8716.262  8902.372
+
+> compute_model_metrics_table("anthrax")
+           auc brier logloss      dic     waic
+SMN      0.695 0.027   0.123 7667.040 7695.918
+SMN-C    0.705 0.027   0.122 7638.994 7671.187
+SMN-C-BG 0.805 0.025   0.105 6886.220 6917.169
+SMN-C-LD 0.816 0.024   0.101 6646.713 6787.791
+SMN-C-SB 0.895 0.024   0.093 6086.639 6293.337
+
+> compute_model_metrics_table("wiring")
+           auc brier logloss     dic    waic
+SMN      0.862 0.118   0.354 301.245 300.649
+SMN-C    0.864 0.118   0.353 301.663 303.241
+SMN-C-BG 0.963 0.055   0.174 172.925 171.206
+SMN-C-LD 0.959 0.063   0.198 197.550 191.251
+SMN-C-SB 0.973 0.052   0.165 147.272 170.422
+
+> compute_model_metrics_table("tech")
+           auc brier logloss      dic     waic
+SMN      0.818 0.084   0.277 2700.144 2705.085
+SMN-C    0.820 0.084   0.276 2680.401 2695.170
+SMN-C-BG 0.897 0.067   0.224 2292.874 2317.989
+SMN-C-LD 0.949 0.051   0.168 1797.678 1815.137
+SMN-C-SB 0.937 0.055   0.176 1842.754 2020.159
+
+> compute_model_metrics_table("seven")
+           auc brier logloss      dic     waic
+SMN      0.732 0.127   0.412 1071.139 1080.441
+SMN-C    0.733 0.127   0.411 1066.096 1076.376
+SMN-C-BG 0.823 0.113   0.357 1014.390 1018.459
+SMN-C-LD 0.981 0.040   0.127  415.060  415.603
+SMN-C-SB 0.947 0.066   0.210  606.324  666.608
+
+> compute_model_metrics_table("girls")
+           auc brier logloss      dic     waic
+SMN      0.693 0.031   0.139 1106.498 1126.149
+SMN-C    0.695 0.031   0.139 1106.461 1126.190
+SMN-C-BG 0.830 0.030   0.120 1060.361 1064.565
+SMN-C-LD 0.984 0.016   0.051  499.435  528.992
+SMN-C-SB 0.988 0.015   0.046  397.054  433.085
+
+> compute_model_metrics_table("aarhus")
+           auc brier logloss      dic     waic
+SMN      0.814 0.054   0.194 3764.474 3764.617
+SMN-C    0.816 0.054   0.193 3741.639 3752.779
+SMN-C-BG 0.967 0.030   0.102 2252.298 2243.376
+SMN-C-LD 0.969 0.028   0.097 2121.850 2155.372
+SMN-C-SB 0.973 0.030   0.098 1980.228 2073.874
+
+> compute_model_metrics_table("micro")
+           auc brier logloss      dic     waic
+SMN      0.793 0.046   0.172 6286.238 6299.399
+SMN-C    0.794 0.046   0.172 6277.287 6291.145
+SMN-C-BG 0.939 0.033   0.115 4494.034 4491.625
+SMN-C-LD 0.945 0.032   0.111 4304.952 4380.780
+SMN-C-SB 0.888 0.039   0.140 5363.630 5506.152

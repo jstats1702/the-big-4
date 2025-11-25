@@ -327,6 +327,55 @@ build_X <- function(g,
      )
 }
 
+layer_metrics <- function(y, 
+                          layer_names =  c("logRMS", "logSC", "logitSFM", "logFlux")) {
+     # Dependencies (quiet)
+     suppressMessages(suppressWarnings(require(igraph)))
+     
+     K <- dim(y)[3]
+     out <- vector("list", K)
+     
+     for (k in seq_len(K)) {
+          A <- y[, , k]
+          A[is.na(A)] <- 0
+          diag(A) <- 0
+          A <- (A + t(A)) > 0
+          
+          g <- igraph::graph_from_adjacency_matrix(A * 1L, mode = "undirected", diag = FALSE)
+          
+          n  <- igraph::vcount(g)
+          m  <- igraph::ecount(g)
+          dens <- igraph::edge_density(g, loops = FALSE)
+          trans <- igraph::transitivity(g, type = "global")
+          assort <- tryCatch(igraph::assortativity_degree(g, directed = FALSE), error = function(e) NA_real_)
+          deg  <- igraph::degree(g)
+          mean_deg <- mean(deg)
+          sd_deg   <- if (length(deg) > 1) stats::sd(deg) else 0
+          mean_dist <- tryCatch(igraph::mean_distance(g, directed = FALSE, unconnected = TRUE),
+                                error = function(e) NA_real_)
+          diam <- tryCatch(igraph::diameter(g, directed = FALSE, unconnected = TRUE),
+                           error = function(e) NA_integer_)
+          tri_cnt <- sum(igraph::count_triangles(g)) / 3
+          
+          out[[k]] <- data.frame(
+               layer                 = layer_names[k],
+               n_nodes               = n,
+               n_edges               = m,
+               density               = dens,
+               transitivity_global   = trans,
+               degree_assortativity  = assort,
+               mean_degree           = mean_deg,
+               sd_degree             = sd_deg,
+               mean_geodesic_distance= mean_dist,
+               diameter              = diam,
+               triangle_count        = tri_cnt,
+               row.names = NULL,
+               check.names = FALSE
+          )
+     }
+     do.call(rbind, out)
+}
+
 # Metallica, Slayer, Megadeth, Anthrax (in order of founding) ------------------
 
 year_data_metallica  <- c(
@@ -686,4 +735,78 @@ plot_album_network(
 )
 dev.off()
 
+# EDA: Metallica ---------------------------------------------------------------
+
+load("data_metallica.RData")
+
+# Build 3D adjacency array y (n x n x K)
+metrics <- c("logRMS", "logSC", "logitSFM", "logFlux")
+K <- length(metrics)
+n <- nrow(res_metallica$logRMS$adjacency)
+
+y <- array(NA_real_, dim = c(n, n, K))
+y[, , 1] <- res_metallica$logRMS$adjacency
+y[, , 2] <- res_metallica$logSC$adjacency
+y[, , 3] <- res_metallica$logitSFM$adjacency
+y[, , 4] <- res_metallica$logFlux$adjacency
+
+metrics_table <- layer_metrics(y)
+metrics_table
+
+# EDA: Slayer ------------------------------------------------------------------
+
+load("data_slayer.RData")
+
+# Build 3D adjacency array y (n x n x K)
+metrics <- c("logRMS", "logSC", "logitSFM", "logFlux")
+K <- length(metrics)
+n <- nrow(res_slayer$logRMS$adjacency)
+
+y <- array(NA_real_, dim = c(n, n, K))
+y[, , 1] <- res_slayer$logRMS$adjacency
+y[, , 2] <- res_slayer$logSC$adjacency
+y[, , 3] <- res_slayer$logitSFM$adjacency
+y[, , 4] <- res_slayer$logFlux$adjacency
+
+metrics_table <- layer_metrics(y)
+metrics_table
+
+# EDA: Megadeth ----------------------------------------------------------------
+
+load("data_megadeth.RData")
+
+# Build 3D adjacency array y (n x n x K)
+metrics <- c("logRMS", "logSC", "logitSFM", "logFlux")
+K <- length(metrics)
+n <- nrow(res_megadeth$logRMS$adjacency)
+
+y <- array(NA_real_, dim = c(n, n, K))
+y[, , 1] <- res_megadeth$logRMS$adjacency
+y[, , 2] <- res_megadeth$logSC$adjacency
+y[, , 3] <- res_megadeth$logitSFM$adjacency
+y[, , 4] <- res_megadeth$logFlux$adjacency
+
+metrics_table <- layer_metrics(y)
+metrics_table
+
+# EDA: Anthrax -----------------------------------------------------------------
+
+load("data_anthrax.RData")
+
+# Build 3D adjacency array y (n x n x K)
+metrics <- c("logRMS", "logSC", "logitSFM", "logFlux")
+K <- length(metrics)
+n <- nrow(res_anthrax$logRMS$adjacency)
+
+y <- array(NA_real_, dim = c(n, n, K))
+y[, , 1] <- res_anthrax$logRMS$adjacency
+y[, , 2] <- res_anthrax$logSC$adjacency
+y[, , 3] <- res_anthrax$logitSFM$adjacency
+y[, , 4] <- res_anthrax$logFlux$adjacency
+
+metrics_table <- layer_metrics(y)
+metrics_table
+
 # End --------------------------------------------------------------------------
+
+

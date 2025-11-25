@@ -1,0 +1,24 @@
+METALLICA
+     layer n_nodes n_edges    density transitivity_global degree_assortativity mean_degree sd_degree mean_geodesic_distance diameter triangle_count
+1   logRMS     136     252 0.02745098           0.1214489           -0.2538720    3.705882  3.279832               4.069935        9             57
+2    logSC     136     251 0.02734205           0.1097561           -0.1372420    3.691176  3.615839               3.807081       10             57
+3 logitSFM     136     234 0.02549020           0.1127349           -0.2487322    3.441176  2.393710               4.428105        9             36
+4  logFlux     136     245 0.02668845           0.1502636           -0.2243095    3.602941  2.722416               4.245861       10             57
+SLAYER
+     layer n_nodes n_edges    density transitivity_global degree_assortativity mean_degree sd_degree mean_geodesic_distance diameter triangle_count
+1   logRMS     114     211 0.03275889           0.1291740          -0.29659626    3.701754  3.170466               3.906847        8             49
+2    logSC     114     193 0.02996429           0.1304348          -0.07048911    3.385965  2.385460               4.325415        9             34
+3 logitSFM     114     192 0.02980904           0.1470245          -0.15804516    3.368421  2.668277               4.896289       11             42
+4  logFlux     114     212 0.03291414           0.1171477          -0.34135604    3.719298  3.262847               3.797392        8             46
+MEGADETH
+     layer n_nodes n_edges    density transitivity_global degree_assortativity mean_degree sd_degree mean_geodesic_distance diameter triangle_count
+1   logRMS     173     322 0.02164269          0.13423181           -0.2467764    3.722543  3.372841               4.642089       11             83
+2    logSC     173     321 0.02157548          0.10236967           -0.1664001    3.710983  3.796839               3.798562        8             72
+3 logitSFM     173     294 0.01976072          0.14579439           -0.1785125    3.398844  2.059408               5.093359       11             52
+4  logFlux     173     326 0.02191155          0.09924386           -0.2496217    3.768786  3.756198               4.073330        9             70
+ANTHRAX
+     layer n_nodes n_edges    density transitivity_global degree_assortativity mean_degree sd_degree mean_geodesic_distance diameter triangle_count
+1   logRMS     123     221 0.02945488          0.13213703           -0.2861203    3.593496  3.271430               4.078369        8             54
+2    logSC     123     213 0.02838864          0.09637306           -0.1164970    3.463415  2.686617               3.966280        8             31
+3 logitSFM     123     206 0.02745568          0.12362637           -0.2124217    3.349593  1.999933               4.780088       10             30
+4  logFlux     123     217 0.02892176          0.11503532           -0.2666964    3.528455  2.692811               4.311609       10             38

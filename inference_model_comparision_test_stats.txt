@@ -1,0 +1,79 @@
+> compute_ppc_all_models("metallica")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.001        0.069         0.131       0.093     0.412         0.772    2.083
+SMN-C      0.001        0.067         0.132       0.088     0.413         0.769    2.070
+SMN-C-BG   0.001        0.037         0.096       0.089     0.433         0.674    1.914
+SMN-C-LD   0.001        0.036         0.124       0.094     0.373         0.620    1.678
+SMN-C-SB   0.001        0.015         0.110       0.102     0.289         0.355    1.017
+
+> compute_ppc_all_models("slayer")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.001        0.067         0.143       0.100     0.403         0.997    2.008
+SMN-C      0.001        0.066         0.146       0.100     0.393         0.990    1.962
+SMN-C-BG   0.001        0.048         0.110       0.094     0.344         0.892    1.821
+SMN-C-LD   0.001        0.047         0.137       0.100     0.360         0.898    1.825
+SMN-C-SB   0.001        0.023         0.116       0.097     0.315         0.555    1.025
+
+> compute_ppc_all_models("megadeth")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.000        0.077         0.118       0.086     0.434         0.989    2.241
+SMN-C      0.000        0.076         0.118       0.082     0.442         0.995    2.238
+SMN-C-BG   0.000        0.079         0.112       0.085     0.431         0.991    2.232
+SMN-C-LD   0.001        0.057         0.110       0.099     0.492         0.867    1.801
+SMN-C-SB   0.000        0.008         0.092       0.085     0.323         0.475    0.940
+
+> compute_ppc_all_models("anthrax")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.001        0.062         0.144       0.090     0.449         0.902    1.676
+SMN-C      0.001        0.061         0.143       0.101     0.475         0.913    1.705
+SMN-C-BG   0.001        0.041         0.119       0.097     0.495         0.827    1.506
+SMN-C-LD   0.001        0.039         0.159       0.107     0.515         0.788    1.375
+SMN-C-SB   0.001        0.017         0.138       0.093     0.374         0.504    0.726
+
+> compute_ppc_all_models("wiring")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.008        0.270         0.332       0.104     0.269         0.292    0.948
+SMN-C      0.003        0.264         0.334       0.037     0.276         0.295    0.958
+SMN-C-BG   0.004        0.107         0.158       0.054     0.050         0.250    0.854
+SMN-C-LD   0.005        0.137         0.202       0.061     0.062         0.251    0.874
+SMN-C-SB   0.002        0.062         0.158       0.028     0.043         0.277    0.941
+
+> compute_ppc_all_models("tech")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.015        0.190         0.204       0.299     0.356         0.533    1.677
+SMN-C      0.003        0.196         0.216       0.068     0.314         0.471    1.552
+SMN-C-BG   0.003        0.193         0.218       0.068     0.279         0.448    1.501
+SMN-C-LD   0.003        0.135         0.188       0.067     0.191         0.466    1.529
+SMN-C-SB   0.002        0.093         0.185       0.038     0.177         0.449    1.530
+
+> compute_ppc_all_models("seven")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.014        0.346         0.480       0.404     0.626         0.165    1.604
+SMN-C      0.004        0.353         0.483       0.123     0.578         0.165    1.541
+SMN-C-BG   0.003        0.360         0.430       0.095     0.546         0.153    1.337
+SMN-C-LD   0.002        0.029         0.104       0.058     0.163         0.318    0.120
+SMN-C-SB   0.002        0.041         0.264       0.064     0.243         0.154    1.268
+
+> compute_ppc_all_models("girls")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.003        0.365         0.427       0.132     0.677         1.011    1.191
+SMN-C      0.002        0.365         0.424       0.122     0.679         0.988    1.101
+SMN-C-BG   0.002        0.385         0.417       0.101     0.629         1.060    1.197
+SMN-C-LD   0.001        0.153         0.237       0.029     0.305         0.800    1.309
+SMN-C-SB   0.000        0.049         0.159       0.022     0.298         0.731    3.218
+
+> compute_ppc_all_models("aarhus")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.005        0.289         0.155       0.277     0.528         0.987    2.556
+SMN-C      0.002        0.292         0.169       0.105     0.539         0.791    2.075
+SMN-C-BG   0.001        0.153         0.139       0.052     0.217         0.486    1.302
+SMN-C-LD   0.001        0.137         0.141       0.048     0.171         0.347    1.089
+SMN-C-SB   0.001        0.042         0.084       0.033     0.136         0.109    0.711
+
+> compute_ppc_all_models("micro")
+         density transitivity assortativity mean_degree sd_degree mean_distance diameter
+SMN        0.005        0.100         0.086       0.345     0.627         0.437    1.136
+SMN-C      0.001        0.102         0.087       0.082     0.579         0.396    1.034
+SMN-C-BG   0.000        0.077         0.069       0.038     0.383         0.194    0.650
+SMN-C-LD   0.001        0.071         0.075       0.044     0.361         0.105    0.427
+SMN-C-SB   0.001        0.022         0.085       0.077     0.499         0.311    0.921
